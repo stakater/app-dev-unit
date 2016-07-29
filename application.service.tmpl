@@ -12,5 +12,5 @@ ExecStop=/usr/bin/docker stop %n
 RestartSec=10
 Restart=always
 
-[Install]
-WantedBy=multi-user.target
+[X-Fleet]
+Global=true
