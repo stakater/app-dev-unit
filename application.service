@@ -1,0 +1,16 @@
+[Unit]
+Description= Application
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+ExecStartPre=-/usr/bin/docker rm %n
+ExecStartPre=/usr/bin/docker pull <#APP_DOCKER_IMAGE#>
+ExecStart=/usr/bin/docker run --rm --name %n <#APP_DOCKER_OPTS#> <#APP_DOCKER_IMAGE#>
+ExecStop=/usr/bin/docker stop %n
+RestartSec=10
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
