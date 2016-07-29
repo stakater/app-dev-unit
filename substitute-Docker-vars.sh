@@ -45,6 +45,6 @@ fi
 newFile="${FILE%%.tmpl*}"
 cp $FILE $newFile
 
-perl -p -i -e "s/<#APP_DOCKER_IMAGE#>/$DOCKER_IMAGE/g" "$newFile"
-perl -p -i -e "s/<#APP_DOCKER_OPTS#>/$DOCKER_OPTS/g" "$newFile"
+perl -p -i -e "s|<#APP_DOCKER_IMAGE#>|$DOCKER_IMAGE|g" "$newFile"
+perl -p -i -e "s|<#APP_DOCKER_OPTS#>|$DOCKER_OPTS|g" "$newFile"
 
