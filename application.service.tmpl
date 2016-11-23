@@ -5,9 +5,10 @@ Requires=docker.service
 
 [Service]
 TimeoutStartSec=0
+ExecStartPre=/usr/bin/bash -c "/usr/bin/systemctl set-environment HOSTNAME=$(hostname -i)"
 ExecStartPre=-/usr/bin/docker rm %n
 ExecStartPre=/usr/bin/docker pull <#APP_DOCKER_IMAGE#>
-ExecStart=/usr/bin/docker run --rm --name %n <#APP_DOCKER_OPTS#> <#APP_DOCKER_IMAGE#>
+ExecStart=/usr/bin/docker run --rm --name %n <#APP_DOCKER_OPTS#> --dns-search service.consul --dns $HOSTNAME <#APP_DOCKER_IMAGE#>
 ExecStop=/usr/bin/docker stop %n
 
 [X-Fleet]
