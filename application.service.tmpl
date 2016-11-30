@@ -2,6 +2,7 @@
 Description= Application unit for <#APP_DOCKER_IMAGE#>
 After=docker.service
 Requires=docker.service
+<#EXTRA_UNIT_OPTS#>
 
 [Service]
 TimeoutStartSec=0
